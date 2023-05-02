@@ -24,7 +24,9 @@ To learn about method and functions, read the documentation.
 | _AddEvent(event,func,type)             | Create event for a custom DOM element|
 | _RemoveEvent(event,func,type)          | Remove event for a custom DOM element|
 | _Display(name)                         | Display custom DOM element on page   |
+| _Undisplay(selector)                   | Undisplay custom DOM element on page |
 | _Attr(classname,attribute,value)       | Add attribute to custom DOM element  |
+| _Clear()                               | Reset local variable for DOM element |
 
 ### _CreateDOM
 
@@ -83,6 +85,7 @@ _Display(argument)
 ```
 
 Display functions, allow you to display custom DOM element on page.
+/!\ Note that you have to call display after creating element, but before calling event !  
 
 #### Exemple : 
 
@@ -91,6 +94,23 @@ _Display("*")
 ```
 
 In this exemple we display all the custom element
+
+### _Undisplay
+
+```js
+_Undisplay(argument)
+```
+
+Undisplay functions, allow you to undisplay custom DOM element on page. 
+
+#### Exemple : 
+
+```js
+_Undisplay("*")
+```
+
+In this exemple we undisplay all the custom element
+
 
 ### _Attr
 
@@ -107,3 +127,21 @@ _Attr(".mainContent", "style", "color:red")
 ```
 
 In this exemple we set the text in red for all element with class mainContent
+
+### _Clear
+
+```js
+_Clear()
+```
+
+Clear function reset all variable for creation of DOM element 
+
+### Usage Exemples : 
+
+```js
+_AddEvent("click",function(){
+  _CreateDOM("input",".input",true)
+},".button")
+```
+
+This function create a Input when you click a button

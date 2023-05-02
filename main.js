@@ -6,7 +6,6 @@ function _CreateDOM(type, queryAttribute, isChild) {
   let custom = document.createElement(type);
   if (queryAttribute && queryAttribute[0] == ".") {
     custom.classList.add(queryAttribute.substring(1))
-    custom.innerHTML = "text"
   } else if (queryAttribute && queryAttribute[0] == "#") {
     custom.id = queryAttribute.substring(1)
   }
@@ -50,25 +49,31 @@ function _Attr(classname, attr, value) {
   });
 }
 
+function _Clear() {
+  custom_element_child = [];
+  custom_element = [];
+}
+
+function _Undisplay(selector) {
+  var elements = document.querySelectorAll(selector);
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].parentNode.removeChild(elements[i]);
+  }
+}
+
 function UpLayer(number) {
   for (i in number) {
 
   }
 }
 
-_CreateDOM("header")
-_CreateDOM("div",".mainContent",true)
-_CreateDOM("div",".mainContent",true)
-_CreateDOM("div",".mainContent",true)
-_CreateDOM("div",".mainContent",true)
-_CreateDOM("div",".mainContent",false)
-UpLayer(1)
-
-/*
-_CreateDOM("header","div","","header")
-_CreateDOM("header","div","","header")
-AddEvent(".header","console.log('a')","click")
-*/
+_CreateDOM("div")
+_CreateDOM("input",".input",true)
+_CreateDOM("button",".button",false)
 _Display("*")
-_AddEvent("click",function(){console.log("HELLO THERE")},".mainContent")
-_Attr(".mainContent", "style", "color:red")
+_AddEvent("click",function(){
+  _CreateDOM("input",".input",true)
+},".button")
+_Attr(".button", "value", "aaaaaaaaaaaa")
+_Attr(".input", "type", "text")
+_Attr(".input", "placeholder", "TODO list")
