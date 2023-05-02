@@ -24,13 +24,12 @@ To learn about method and functions, read the documentation.
 | _AddEvent(event,func,type)             | Create event for a custom DOM element|
 | _RemoveEvent(event,func,type)          | Remove event for a custom DOM element|
 | _Display(name)                         | Display custom DOM element on page   |
-| _AttrById(id,attribute,value)          | Add attribute to custom DOM element  |
-| _AttrByClass(classname,attribute,value)| Add attribute to custom DOM element  |
+| _Attr(classname,attribute,value)       | Add attribute to custom DOM element  |
 
-### CreateCustom
+### _CreateDOM
 
 ```js
-CreateCustom(type,attribute,isChild)
+_CreateDOM(type,attribute,isChild)
 ```
 
 CreateCustom functions, allow you to create DOM element with an easy way.
@@ -38,16 +37,16 @@ CreateCustom functions, allow you to create DOM element with an easy way.
 #### Exemple : 
 
 ```js
-CreateCustom("div","#div-header",false)
-CreateCustom("div",".div",true)
+_CreateDOM("div","#div-header",false)
+_CreateDOM("div",".div",true)
 ```
 
 In this exemple we create a div with class div in the div with id div-header
 
-### AddEvent
+### _AddEvent
 
 ```js
-AddEvent(event,function,selector)
+_AddEvent(event,function,selector)
 ```
 
 AddEvent functions, allow you to create event on custom element.
@@ -55,24 +54,56 @@ AddEvent functions, allow you to create event on custom element.
 #### Exemple : 
 
 ```js
-AddEvent("click",function(){console.log("clicked")},".div")
-AddEvent("click",function(){MyFunction()},".div")
+_AddEvent("click",function(){console.log("clicked")},".div")
+_AddEvent("click",function(){MyFunction()},".div")
 ```
 
 In this exemple we create a click event that console log "clicked" when an element with class `.div` is clicked and call `Myfunction()`
 
-### AppendCustom
+### _RemoveEvent
 
 ```js
-AppendCustom(argument)
+_RemoveEvent(event,function,selector)
 ```
 
-AppendCustom functions, allow you to display custom DOM element on page.
+RemoveEvent functions, allow you to remove event on custom element.
 
 #### Exemple : 
 
 ```js
-AppendCustom("*")
+_RemoveEvent("click",".div")
+```
+
+In this exemple we remove the click event on all element with class `.div`
+
+### _Display
+
+```js
+_Display(argument)
+```
+
+Display functions, allow you to display custom DOM element on page.
+
+#### Exemple : 
+
+```js
+_Display("*")
 ```
 
 In this exemple we display all the custom element
+
+### Attr
+
+```js
+_Attr(classname,attribute,value)
+```
+
+Attr functions, allow you to add attribute on custom DOM element.
+
+#### Exemple : 
+
+```js
+_Attr(".mainContent", "style", "color:red")
+```
+
+In this exemple we set the text in red for all element with class mainContent
