@@ -24,9 +24,7 @@ To learn about method and functions, read the documentation.
 | AddEvent(event,func,t)               | Create a custom DOM event          |
 | AppendCustom(name)                   | Append custom element on page      |
 
-### Functions usages
-
-#### CreateCustom
+### CreateCustom
 
 ```js
 CreateCustom(type,attribute,isChild)
@@ -34,7 +32,7 @@ CreateCustom(type,attribute,isChild)
 
 CreateCustom functions, allow you to create DOM element with an easy way.
 
-##### Exemple : 
+#### Exemple : 
 
 ```js
 CreateCustom("div","#div-header",false)
