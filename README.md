@@ -58,3 +58,18 @@ AddEvent("click",function(){MyFunction()},".div")
 
 In this exemple we create a click event that console log "clicked" when an element with class `.div` is clicked and call `Myfunction()`
 
+### AppendCustom
+
+```js
+AppendCustom(argument)
+```
+
+AppendCustom functions, allow you to display custom DOM element on page.
+
+#### Exemple : 
+
+```js
+AppendCustom("*")
+```
+
+In this exemple we display all the custom element
