@@ -40,3 +40,21 @@ CreateCustom("div",".div",true)
 ```
 
 In this exemple we create a div with class div in the div with id div-header
+
+### AddEvent
+
+```js
+AddEvent(event,function,selector)
+```
+
+AddEvent functions, allow you to create event on custom element.
+
+#### Exemple : 
+
+```js
+AddEvent("click",function(){console.log("clicked")},".div")
+AddEvent("click",function(){MyFunction()},".div")
+```
+
+In this exemple we create a click event that console log "clicked" when an element with class `.div` is clicked and call `Myfunction()`
+
