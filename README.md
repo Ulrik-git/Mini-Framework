@@ -1,6 +1,6 @@
 # MINI-FRAMEWORK
 
-## How to install ??
+## How to install ?
 
 To use mini-framework, you need to clone our git repository.
 
@@ -14,10 +14,29 @@ Then you are able to use it.
 
 To learn about method and functions, read the documentation.
 
-## Permissions
+## Functions
+
+### Functions List
 
 | Function                             | Description                        |
 | :--------                            | :-------                           |
 | CreateCustom(type,attribute,isChild) | Create a custom DOM element        | 
 | AddEvent(event,func,t)               | Create a custom DOM event          |
 | AppendCustom(name)                   | Append custom element on page      |
+
+### Functions usages
+
+```js
+CreateCustom(type,attribute,isChild)
+```
+
+CreateCustom functions, allow you to create DOM element with an easy way.
+
+#### Exemple : 
+
+```js
+CreateCustom("div","#div-header",false)
+CreateCustom("div",".div",true)
+```
+
+In this exemple we create a div with class div in the div with id div-header
