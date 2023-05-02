@@ -1,6 +1,6 @@
 var custom_element_child = [];
 var custom_element = [];
-
+var layer = 0;
 
 function _CreateDOM(type, queryAttribute, isChild) {
   let custom = document.createElement(type);
@@ -9,13 +9,23 @@ function _CreateDOM(type, queryAttribute, isChild) {
   } else if (queryAttribute && queryAttribute[0] == "#") {
     custom.id = queryAttribute.substring(1)
   }
-  console.log("here", custom_element, custom_element[custom_element.length - 1], custom)
+  let ok = getPreviousParentElement()[0]
+  let previousParentElement = getPreviousParentElement()[1]
+  console.log("here", isChild, custom, custom_element, custom_element[custom_element.length - 1], custom_element_child[custom_element_child.length - 1], ok, previousParentElement)
   custom_element_child.push(isChild)
   if (isChild && custom_element[custom_element.length - 1] != null) {
     custom_element[custom_element.length - 1].appendChild(custom)
     custom_element.push(custom)
+    layer++
   } else {
-    custom_element.push(custom)
+    if (ok && layer > 0) {
+      console.log('a', previousParentElement, custom)
+      previousParentElement.appendChild(custom)
+      custom_element.push(custom)
+      custom_element_child[custom_element_child.length - 1] = true
+    } else {
+      custom_element.push(custom)
+    }
   }
 }
 
@@ -52,6 +62,7 @@ function _Attr(classname, attr, value) {
 function _Clear() {
   custom_element_child = [];
   custom_element = [];
+  layer = 0;
 }
 
 function _Undisplay(selector) {
@@ -61,15 +72,37 @@ function _Undisplay(selector) {
   }
 }
 
-function UpLayer(number) {
-  for (i in number) {
-
+function _UpLayer(number) {
+  number = String(number)
+  if (number == "*") {
+    layer = 0
+    return
   }
+  for (i in number) {
+    if (layer > 0) {
+      layer-=1
+    }
+  }
+}
+
+function getPreviousParentElement() {
+  for (let i = custom_element_child.length - 1; i > 0; i--) {
+    console.log("b", custom_element[i-1], custom_element_child[i], custom_element_child.length)
+    if (!custom_element_child[i-1]) {
+      return [true, custom_element[i-1]]
+    }
+  }
+  return false
 }
 
 _CreateDOM("div")
 _CreateDOM("input",".input",true)
+_CreateDOM("input",".input",false)
+_CreateDOM("input",".input",true)
+_CreateDOM("input",".input",true)
+_CreateDOM("input",".input",false)
 _CreateDOM("button",".button",false)
+_CreateDOM("button",".button",true)
 _Display("*")
 _AddEvent("click",function(){
   _CreateDOM("input",".input",true)
