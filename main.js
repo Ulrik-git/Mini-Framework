@@ -70,5 +70,5 @@ _CreateDOM("header","div","","header")
 AddEvent(".header","console.log('a')","click")
 */
 _Display("*")
-_AddEvent("click",function(){Cos()},".mainContent")
+_AddEvent("click",function(){console.log("HELLO THERE")},".mainContent")
 _Attr(".mainContent", "style", "color:red")
