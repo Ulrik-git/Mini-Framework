@@ -26,13 +26,15 @@ To learn about method and functions, read the documentation.
 
 ### Functions usages
 
+#### CreateCustom
+
 ```js
 CreateCustom(type,attribute,isChild)
 ```
 
 CreateCustom functions, allow you to create DOM element with an easy way.
 
-#### Exemple : 
+##### Exemple : 
 
 ```js
 CreateCustom("div","#div-header",false)
