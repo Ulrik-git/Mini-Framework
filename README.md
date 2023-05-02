@@ -18,11 +18,14 @@ To learn about method and functions, read the documentation.
 
 ### Functions List
 
-| Function                             | Description                        |
-| :--------                            | :-------                           |
-| CreateCustom(type,attribute,isChild) | Create a custom DOM element        | 
-| AddEvent(event,func,t)               | Create a custom DOM event          |
-| AppendCustom(name)                   | Append custom element on page      |
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+| _CreateDOM(type,attribute,isChild)     | Create a custom DOM element          | 
+| _AddEvent(event,func,type)             | Create event for a custom DOM element|
+| _RemoveEvent(event,func,type)          | Remove event for a custom DOM element|
+| _Display(name)                         | Display custom DOM element on page   |
+| _AttrById(id,attribute,value)          | Add attribute to custom DOM element  |
+| _AttrByClass(classname,attribute,value)| Add attribute to custom DOM element  |
 
 ### CreateCustom
 
