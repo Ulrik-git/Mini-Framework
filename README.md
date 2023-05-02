@@ -92,7 +92,7 @@ _Display("*")
 
 In this exemple we display all the custom element
 
-### Attr
+### _Attr
 
 ```js
 _Attr(classname,attribute,value)
