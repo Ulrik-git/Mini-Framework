@@ -26,7 +26,8 @@ To learn about method and functions, read the documentation.
 | _Display(name)                         | Display custom DOM element on page   |
 | _Undisplay(selector)                   | Undisplay custom DOM element on page |
 | _Attr(classname,attribute,value)       | Add attribute to custom DOM element  |
-| _Clear()                               | Reset local variable for DOM element |
+| _Text(classname,text)                  | Add text to custom DOM element       |
+| _Clear()                               | Reset local variable for DOM element | 
 
 ### _CreateDOM
 
@@ -127,6 +128,22 @@ _Attr(".mainContent", "style", "color:red")
 ```
 
 In this exemple we set the text in red for all element with class mainContent
+
+### _Text
+
+```js
+_Text(classname,text)
+```
+
+Text functions, allow you to add text on custom DOM element.
+
+#### Exemple : 
+
+```js
+_Text(".mainContent", "Hello there ! ")
+```
+
+In this exemple we set the text of elements mainContent to Hello there
 
 ### _Clear
 

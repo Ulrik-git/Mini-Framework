@@ -72,6 +72,13 @@ function _Undisplay(selector) {
   }
 }
 
+function _Text(classname,text) {
+  let elems = document.querySelectorAll(classname)
+  elems.forEach(element => {
+    element.innerHTML = text
+  });
+}
+
 function _UpLayer(number) {
   number = String(number)
   if (number == "*") {
@@ -95,18 +102,17 @@ function getPreviousParentElement() {
   return false
 }
 
-_CreateDOM("div")
-_CreateDOM("input",".input",true)
+_CreateDOM("div",".container",false)
+_CreateDOM("h1",".title",true)
 _CreateDOM("input",".input",false)
-_CreateDOM("input",".input",true)
-_CreateDOM("input",".input",true)
-_CreateDOM("input",".input",false)
-_CreateDOM("button",".button",false)
-_CreateDOM("button",".button",true)
 _Display("*")
-_AddEvent("click",function(){
-  _CreateDOM("input",".input",true)
-},".button")
-_Attr(".button", "value", "aaaaaaaaaaaa")
-_Attr(".input", "type", "text")
-_Attr(".input", "placeholder", "TODO list")
+_Attr(".container","style","text-align:center;color:red;")
+_Attr(".input","placeholder","ToDo")
+_Text(".title","TODO")
+_AddEvent("keydown", function(e){
+  console.log(e.key)
+  _CreateDOM("div",".list",true)
+  _Text(".list","test")
+  _Display("*")
+  _UpLayer("*")
+}, "input");
