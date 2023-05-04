@@ -150,3 +150,19 @@ _CreateDOM("footer",".footer",false)
   _UpLayer(2)
   _CreateDOM("button",".clear-completed",false)
   _Text(".selected3","Completed")
+
+
+_AddEvent("keydown",function(e){
+  if (e.keyCode == 13) {
+    console.log(e)
+    _UpLayer("*")
+    _CreateDOM("div",".view",false)
+    _CreateDOM("input",".toggle",true)
+    _Attr(".toggle","type","checkbox")
+    _CreateDOM("label","#lbl",false)
+    _Text("#lbl","Test")
+    _CreateDOM("button",".destroy",false)
+
+  }
+},"input")
+_Display("*")
