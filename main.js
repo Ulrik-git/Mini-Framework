@@ -128,12 +128,23 @@ function findLastElementOfLayer(layer) {
   }
 }
 
+
+function _Get(id) {
+  return document.getElementById(id).value
+}
+
+function _ClearValue(id) {
+  document.getElementById(id).value = ''
+}
+
+
 _CreateDOM("section",".todoapp",false)
   _CreateDOM("header",".header",true)
     _CreateDOM("h1", "#title",true)
     _Text("#title","todos")
     _CreateDOM("input",".new-todo",false)
     _Attr(".new-todo","placeholder","What needs to be done?")
+    _Attr(".new-todo","id","new-todo")
   _UpLayer(1)
   _CreateDOM("section",".main",false)
   _CreateDOM("input","#toggle-all",true)
@@ -151,7 +162,8 @@ _CreateDOM("section",".todoapp",false)
           _CreateDOM("input",".toggle",true, ".view")
           _Attr(".toggle","type","checkbox")
           _CreateDOM("label","#lbl",false, ".view")
-          _Text("#lbl","Test")
+          _Text("#lbl",_Get("new-todo"))
+          _ClearValue("new-todo")
           _CreateDOM("button",".destroy",false, ".view")
   
     }
