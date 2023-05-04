@@ -180,7 +180,7 @@ function LastElementLogic(funcName, element, text) {
     } else {
       nodes[0].style.display = 'block';
     }
-  } else if (funcName == "_CountChildrenOfElementWithClass" || funcName == "_AddEventToLastOfElement") {
+  } else if (funcName == "_CountChildrenOfElementWithClass" || funcName == "_AddEventToLastOfElement" || funcName == "_CountChildrenOfElement") {
     if (nodes.length > 1) {
       return nodes[nodes.length-1];
     } else {
@@ -232,6 +232,15 @@ function _CountChildrenOfElementWithClass(element, className) {
   return count
 }
 
+function _CountChildrenOfElement(element) {
+  if (element[0] == ".") {
+    element = LastElementLogic("_CountChildrenOfElement", element)
+  } else if (element[0] == "#") {
+    element = document.querySelector(element)
+  }
+  return element.children.length
+}
+
 
 _CreateDOM("section",".todoapp",false)
   _CreateDOM("header",".header",true)
@@ -270,7 +279,19 @@ _CreateDOM("section",".todoapp",false)
             } else {
               _AddClass(list, "completed")
             }
+            let count = _CountChildrenOfElement('.todo-list') - _CountChildrenOfElementWithClass(".todo-list", "completed")
+            if (count == 1) {
+              _Text(".todo-count", count + " item left")
+            } else {
+              _Text(".todo-count", count + " items left")
+            }
           }, ".toggle")
+          let count = _CountChildrenOfElement('.todo-list') - _CountChildrenOfElementWithClass(".todo-list", "completed")
+          if (count == 1) {
+            _Text(".todo-count", count + " item left")
+          } else {
+            _Text(".todo-count", count + " items left")
+          }
           _AddEvent("click",function(){
             _DeleteParent(this)
           },".destroy")
