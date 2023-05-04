@@ -35,12 +35,10 @@ To learn about method and functions, read the documentation.
 
 
 ### _CreateDOM
-
 ```js
 _CreateDOM(type,[attribute],[child],[parent])
 ```
-
-CreateCustom functions, allow you to create DOM element.
+Create a custom DOM element
 * Type : (h1,div,header,span...) **required**<br />
 *What is the type of the custom element*
 * Attribute : (class,id) **optionnal**<br />
@@ -49,126 +47,24 @@ CreateCustom functions, allow you to create DOM element.
 *Have to be created as a child of the previous element*
 * Parent : (name) **optionnal**<br />
 *Define who is the parent of the element*
-
-
 ```js
-_CreateDOM("div","#div-header",false)
-_CreateDOM("div",".div",true)
+// Exemple
+_CreateDOM("div") // For creating a div
+_CreateDOM("div",".block") // For creating a div with the class block
+_CreateDOM("div",".block",true) // For creating a div with the class block and is a child of previous element
 ```
-
 ### _AddEvent
-
 ```js
-_AddEvent(event,function,selector)
+_AddEvent(event,function,type)
 ```
-
-AddEvent functions, allow you to create event on custom element.
-
-#### Exemple : 
-
+Create event for custom DOM element
+* Event : (click,keydown,scroll...) **required**<br />
+*What is the trigger of the event*
+* Function : (()=>{}) **required** <br />
+*What is the code to run when the event triggered*
+* Type : (div,.block...) **required**<br />
+*On which element the event can trigger*
 ```js
-_AddEvent("click",function(){console.log("clicked")},".div")
-_AddEvent("click",function(){MyFunction()},".div")
+// Exemple
+_AddEvent("click",()=>{console.log("Hello there")},"div") // Console log hello there when a user click on div
 ```
-
-In this exemple we create a click event that console log "clicked" when an element with class `.div` is clicked and call `Myfunction()`
-
-### _RemoveEvent
-
-```js
-_RemoveEvent(event,function,selector)
-```
-
-RemoveEvent functions, allow you to remove event on custom element.
-
-#### Exemple : 
-
-```js
-_RemoveEvent("click",".div")
-```
-
-In this exemple we remove the click event on all element with class `.div`
-
-### _Display
-
-```js
-_Display(argument)
-```
-
-Display functions, allow you to display custom DOM element on page.
-/!\ Note that you have to call display after creating element, but before calling event !  
-
-#### Exemple : 
-
-```js
-_Display("*")
-```
-
-In this exemple we display all the custom element
-
-### _Undisplay
-
-```js
-_Undisplay(argument)
-```
-
-Undisplay functions, allow you to undisplay custom DOM element on page. 
-
-#### Exemple : 
-
-```js
-_Undisplay("*")
-```
-
-In this exemple we undisplay all the custom element
-
-
-### _Attr
-
-```js
-_Attr(classname,attribute,value)
-```
-
-Attr functions, allow you to add attribute on custom DOM element.
-
-#### Exemple : 
-
-```js
-_Attr(".mainContent", "style", "color:red")
-```
-
-In this exemple we set the text in red for all element with class mainContent
-
-### _Text
-
-```js
-_Text(classname,text)
-```
-
-Text functions, allow you to add text on custom DOM element.
-
-#### Exemple : 
-
-```js
-_Text(".mainContent", "Hello there ! ")
-```
-
-In this exemple we set the text of elements mainContent to Hello there
-
-### _Clear
-
-```js
-_Clear()
-```
-
-Clear function reset all variable for creation of DOM element 
-
-### Usage Exemples : 
-
-```js
-_AddEvent("click",function(){
-  _CreateDOM("input",".input",true)
-},".button")
-```
-
-This function create a Input when you click a button
