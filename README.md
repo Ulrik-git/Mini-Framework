@@ -13,6 +13,7 @@ cd mini-framework
 Then you are able to use it.
 
 To learn about method and functions, read the documentation.
+[], mean the argument is optionnal
 
 ## Functions
 
@@ -22,7 +23,7 @@ To learn about method and functions, read the documentation.
 | :--------                              | :-------                             |
 |_CreateDOM(type,[attribute],[child],[parent])|Create a custom DOM element| 
 |_AddEvent(event,function,type)|Create event for custom DOM element|
-|_RemoveEvent(event,function,type)|Remove event for custom DOM element|
+|_RemoveEvent(event,type)|Remove event for custom DOM element|
 |_Display(name)|Display custom DOM element on page|
 |_Undisplay(name)|Undisplay custom DOM element on page|
 |_Attr(classname,attribute,value)|Add attribute to custom DOM element|
@@ -68,3 +69,17 @@ Create event for custom DOM element
 // Exemple
 _AddEvent("click",()=>{console.log("Hello there")},"div") // Console log hello there when a user click on div
 ```
+### _RemoveEvent
+```js
+_RemoveEvent(event,type)
+```
+Remove event for custom DOM element
+* Event : (click,scroll,keydown...) **required** <br />
+*What is the trigger of the event*
+* Type : (div,.block...) **required** <br />
+*On which element the event can trigger*
+```js
+// Exemple
+_RemoveEvent("click","div") // Remove the click event on div
+```
+
