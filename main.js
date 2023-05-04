@@ -3,13 +3,24 @@ var custom_element = [];
 var custom_element_layer = [];
 var layer = 0;
 
-function _CreateDOM(type, queryAttribute, isChild) {
+function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
   let custom = document.createElement(type);
   //Set id or classname
   if (queryAttribute && queryAttribute[0] == ".") {
     custom.classList.add(queryAttribute.substring(1))
   } else if (queryAttribute && queryAttribute[0] == "#") {
     custom.id = queryAttribute.substring(1)
+  }
+  if (appendToParent != null) {
+    let nodes = document.querySelectorAll(appendToParent);
+    if (nodes.length > 1) {
+      nodes[nodes.length-1].appendChild(custom);
+    } else {
+      nodes[0].appendChild(custom);
+    }
+    _Clear();
+    _Display("*");
+    return
   }
   //Find latest element of current layer
   let lastElementOfLayer
@@ -132,6 +143,19 @@ _CreateDOM("section",".todoapp",false)
   _Attr("#mark","for","toggle-all")
   _Text("#mark","Mark all as complete")
   _CreateDOM("ul",".todo-list",false)
+  _AddEvent("keydown",function(e){
+    if (e.keyCode == 13) {
+      console.log(e)
+      _CreateDOM("li",".l",true, ".todo-list")
+        _CreateDOM("div",".view",true, ".l")
+          _CreateDOM("input",".toggle",true, ".view")
+          _Attr(".toggle","type","checkbox")
+          _CreateDOM("label","#lbl",false, ".view")
+          _Text("#lbl","Test")
+          _CreateDOM("button",".destroy",false, ".view")
+  
+    }
+  },"input")
 _UpLayer(1)
 _CreateDOM("footer",".footer",false)
   _CreateDOM("span",".todo-count",true)
@@ -152,17 +176,5 @@ _CreateDOM("footer",".footer",false)
   _Text(".selected3","Completed")
 
 
-_AddEvent("keydown",function(e){
-  if (e.keyCode == 13) {
-    console.log(e)
-    _UpLayer("*")
-    _CreateDOM("div",".view",false)
-    _CreateDOM("input",".toggle",true)
-    _Attr(".toggle","type","checkbox")
-    _CreateDOM("label","#lbl",false)
-    _Text("#lbl","Test")
-    _CreateDOM("button",".destroy",false)
 
-  }
-},"input")
 _Display("*")
