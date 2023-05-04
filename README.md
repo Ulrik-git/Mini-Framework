@@ -20,18 +20,18 @@ To learn about method and functions, read the documentation.
 
 | Function                               | Description                          |
 | :--------                              | :-------                             |
-|_CreateDOM(<type>,[attribute],[child],[parent])|Create a custom DOM element| 
-|_AddEvent(<event>,<function>,<type>)|Create event for custom DOM element|
-|_RemoveEvent(<event>,<function>,<type>)|Remove event for custom DOM element|
-|_Display(<name>)|Display custom DOM element on page|
-|_Undisplay(<name>)|Undisplay custom DOM element on page|
-|_Attr(<classname>,<attribute>,<value>)|Add attribute to custom DOM element|
-|_Text(<classname>,<text>)|Add text to custom DOM element|
+|_CreateDOM(type,[attribute],[child],[parent])|Create a custom DOM element| 
+|_AddEvent(event,function,type)|Create event for custom DOM element|
+|_RemoveEvent(event,function,type)|Remove event for custom DOM element|
+|_Display(name)|Display custom DOM element on page|
+|_Undisplay(name)|Undisplay custom DOM element on page|
+|_Attr(classname,attribute,value)|Add attribute to custom DOM element|
+|_Text(classname,text)|Add text to custom DOM element|
 |_Clear()|Reset local variable for DOM element| 
-|_UpLayer(<number>)|Set the creation layer to another level|
-|_Get(<name>)|Get the value of the element|
-|_ClearValue(<name>)|Clear the value of the element|
-|_DeleteParent(<name>)|Delete the parent of the element|
+|_UpLayer(number)|Set the creation layer to another level|
+|_Get(name)|Get the value of the element|
+|_ClearValue(name)|Clear the value of the element|
+|_DeleteParent(name)|Delete the parent of the element|
 
 
 ### _CreateDOM
