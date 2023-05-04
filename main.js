@@ -14,6 +14,16 @@ quack._CreateDOM("section",".todoapp",false)
   quack._Attr("#toggle-all","type","checkbox")
   quack._CreateDOM("label","#mark",false)
   quack._Attr("#mark","for","toggle-all")
+  quack._AddEvent("click",function(){
+    if (this.checked) {
+      quack._CheckElementsWithClass('.toggle')
+      quack._DispatchEventToElementsWithClass('.toggle', 'change', 1)
+    } else {
+      quack._UncheckElementsWithClass('.toggle')
+      quack._DispatchEventToElementsWithClass('.toggle', 'change', 0)
+    }
+    updateCount()
+  },"#toggle-all")
   quack._Text("#mark","Mark all as complete")
   quack._CreateDOM("ul",".todo-list",false)
   function updateCount() {
@@ -49,6 +59,11 @@ quack._CreateDOM("section",".todoapp",false)
               quack._RemoveClass(list, "completed")
             } else {
               quack._AddClass(list, "completed")
+            }
+            if (quack._CheckedElementsWithClass('.toggle', true)) {
+              quack._CheckElementsWithClass('#toggle-all')
+            } else {
+              quack._UncheckElementsWithClass('#toggle-all')
             }
             updateCount()
           }, ".toggle")

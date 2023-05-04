@@ -186,6 +186,12 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
       } else {
         return nodes[0];
       }
+    } else {
+        if (nodes.length > 1) {
+            return nodes[nodes.length-1];
+        } else {
+            return nodes[0];
+        }
     }
   }
   
@@ -204,9 +210,23 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
   export function _AddClass(element, className) {
     element.classList.add(className)
   }
+
+  export function _AddClassToElementsOfClass(classToAdd, className) {
+    let elements = document.querySelectorAll(className)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].classList.add(classToAdd)
+    }
+  }
   
   export function _RemoveClass(element, className) {
     element.classList.remove(className)
+  }
+
+  export function _RemoveClassFromElementsOfClass(classToRemove, className) {
+    let elements = document.querySelectorAll(className)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].classList.remove(classToRemove)
+    }
   }
   
   export function _HasClass(element, className) {
@@ -260,4 +280,51 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
         for (let i = 0; i < toDelete.length; i++) {
           toDelete[i].remove()
         }
+  }
+
+  export function _CheckElementsWithClass(className) {
+    let elements = document.querySelectorAll(className)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].checked = true
+    }
+  }
+
+  export function _UncheckElementsWithClass(className) {
+    let elements = document.querySelectorAll(className)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].checked = false
+    }
+  }
+
+  export function _DispatchEventToElementsWithClass(className, event, checked) {
+    let elements = document.querySelectorAll(className)
+    for (let i = 0; i < elements.length; i++) {
+        if (checked == 1) {
+            if (elements[i].checked && !_HasClass(elements[i].parentElement.parentElement, "completed")) {
+                elements[i].dispatchEvent(new Event(event))
+            }
+        } else if (checked == 0) {
+            if (!elements[i].checked && _HasClass(elements[i].parentElement.parentElement, "completed")) {
+                elements[i].dispatchEvent(new Event(event))
+            }
+        } else {
+            elements[i].dispatchEvent(new Event(event))
+        }
+    }
+  }
+
+  export function _CheckedElementsWithClass(className, bool) {
+    let elements = document.querySelectorAll(className)
+    let count = 0
+    for (let i = 0; i < elements.length; i++) {
+        if (bool && elements[i].checked) {
+            count++
+        } else if (!bool && !elements[i].checked) {
+            count++
+        }
+    }
+    if (count == elements.length) {
+        return true
+    }
+    return false
   }
