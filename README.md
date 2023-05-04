@@ -37,19 +37,25 @@ To learn about method and functions, read the documentation.
 ### _CreateDOM
 
 ```js
-_CreateDOM(type,attribute,isChild)
+_CreateDOM(type,[attribute],[child],[parent])
 ```
 
-CreateCustom functions, allow you to create DOM element with an easy way.
+CreateCustom functions, allow you to create DOM element.
+You have to specify :
+    Type : (h1,div,header,span...) **required**
+    *What is the type of the custom element*
+    Attribute : (class,id)
+    *How to access to the element*
+    Child : (true,false)
+    *Have to be created as a child of the previous element*
+    Parent : (name)
+    *Define who is the parent of the element*
 
-#### Exemple : 
 
 ```js
 _CreateDOM("div","#div-header",false)
 _CreateDOM("div",".div",true)
 ```
-
-In this exemple we create a div with class div in the div with id div-header
 
 ### _AddEvent
 
