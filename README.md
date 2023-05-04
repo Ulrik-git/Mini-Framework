@@ -41,14 +41,13 @@ _CreateDOM(type,[attribute],[child],[parent])
 ```
 
 CreateCustom functions, allow you to create DOM element.
-You have to specify :
 * Type : (h1,div,header,span...) **required**<br />
 *What is the type of the custom element*
-* Attribute : (class,id)<br />
+* Attribute : (class,id) **optionnal**<br />
 *How to access to the element*
-* Child : (true,false)<br />
+* Child : (true,false) **optionnal**<br />
 *Have to be created as a child of the previous element*
-* Parent : (name)<br />
+* Parent : (name) **optionnal**<br />
 *Define who is the parent of the element*
 
 
