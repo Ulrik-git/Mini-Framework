@@ -98,12 +98,7 @@ function _Undisplay(selector) {
 }
 
 function _Text(classname,text) {
-  let nodes = document.querySelectorAll(classname);
-  if (nodes.length > 1) {
-    return nodes[nodes.length-1].innerHTML = text;
-  } else {
-    return nodes[0].innerHTML = text;
-  }
+  LastElementLogic("_Text", classname, text)
 }
 
 function _UpLayer(number) {
@@ -132,20 +127,34 @@ function findLastElementOfLayer(layer) {
 
 
 function _Get(element) {
-  let nodes = document.querySelectorAll(element);
-  if (nodes.length > 1) {
-    return nodes[nodes.length-1].value;
-  } else {
-    return nodes[0].value;
-  }
+  return LastElementLogic("_Get", element)
 }
 
 function _ClearValue(element) {
+  LastElementLogic("_ClearValue", element)
+}
+
+function LastElementLogic(funcName, element, text) {
   let nodes = document.querySelectorAll(element);
-  if (nodes.length > 1) {
-    nodes[nodes.length-1].value = "";
-  } else {
-    nodes[0].value = "";
+  if (funcName == "_Text") {
+    let nodes = document.querySelectorAll(element);
+    if (nodes.length > 1) {
+      return nodes[nodes.length-1].innerHTML = text;
+    } else {
+      return nodes[0].innerHTML = text;
+    }
+  } else if (funcName == "_Get") {
+    if (nodes.length > 1) {
+      return nodes[nodes.length-1].value;
+    } else {
+      return nodes[0].value;
+    }
+  } else if (funcName == "_ClearValue") {
+    if (nodes.length > 1) {
+      nodes[nodes.length-1].value = "";
+    } else {
+      nodes[0].value = "";
+    }
   }
 }
 
