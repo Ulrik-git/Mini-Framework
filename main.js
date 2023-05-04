@@ -98,10 +98,12 @@ function _Undisplay(selector) {
 }
 
 function _Text(classname,text) {
-  let elems = document.querySelectorAll(classname)
-  elems.forEach(element => {
-    element.innerHTML = text
-  });
+  let nodes = document.querySelectorAll(classname);
+  if (nodes.length > 1) {
+    return nodes[nodes.length-1].innerHTML = text;
+  } else {
+    return nodes[0].innerHTML = text;
+  }
 }
 
 function _UpLayer(number) {
@@ -129,12 +131,22 @@ function findLastElementOfLayer(layer) {
 }
 
 
-function _Get(id) {
-  return document.getElementById(id).value
+function _Get(element) {
+  let nodes = document.querySelectorAll(element);
+  if (nodes.length > 1) {
+    return nodes[nodes.length-1].value;
+  } else {
+    return nodes[0].value;
+  }
 }
 
-function _ClearValue(id) {
-  document.getElementById(id).value = ''
+function _ClearValue(element) {
+  let nodes = document.querySelectorAll(element);
+  if (nodes.length > 1) {
+    nodes[nodes.length-1].value = "";
+  } else {
+    nodes[0].value = "";
+  }
 }
 
 
@@ -161,9 +173,9 @@ _CreateDOM("section",".todoapp",false)
         _CreateDOM("div",".view",true, ".l")
           _CreateDOM("input",".toggle",true, ".view")
           _Attr(".toggle","type","checkbox")
-          _CreateDOM("label","#lbl",false, ".view")
-          _Text("#lbl",_Get("new-todo"))
-          _ClearValue("new-todo")
+          _CreateDOM("label",".lbl",false, ".view")
+          _Text(".lbl",_Get(".new-todo"))
+          _ClearValue(".new-todo")
           _CreateDOM("button",".destroy",false, ".view")
   
     }
