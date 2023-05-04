@@ -61,7 +61,12 @@ function _AddEvent(event,func,t) {
   });
 }
 
-function _RemoveEvent(event,func,t) {
+function _AddEventToLastOfElement(event,func,t) {
+  t = LastElementLogic("_AddEventToLastOfElement", t)
+  t.addEventListener(event,func);
+}
+
+function _RemoveEvent(event, func, t) {
   var elems = document.querySelectorAll(t);
   elems.forEach(elem => {
     elem.removeEventListener(event,func);
@@ -163,7 +168,68 @@ function LastElementLogic(funcName, element, text) {
     } else {
       nodes[0].value = "";
     }
+  } else if (funcName == "_HideElement") {
+    if (nodes.length > 1) {
+      nodes[nodes.length-1].style.display = 'none';
+    } else {
+      nodes[0].style.display = 'none';
+    }
+  } else if (funcName == "_ShowElement") {
+    if (nodes.length > 1) {
+      nodes[nodes.length-1].style.display = 'block';
+    } else {
+      nodes[0].style.display = 'block';
+    }
+  } else if (funcName == "_CountChildrenOfElementWithClass" || funcName == "_AddEventToLastOfElement") {
+    if (nodes.length > 1) {
+      return nodes[nodes.length-1];
+    } else {
+      return nodes[0];
+    }
   }
+}
+
+function _HideElement(element) {
+  LastElementLogic("_HideElement", element);
+}
+
+function _ShowElement(element) {
+  LastElementLogic("_ShowElement", element);
+}
+
+function _HideElements(element) {
+  document.querySelectorAll(element).style.display = 'none';
+}
+
+function _AddClass(element, className) {
+  element.classList.add(className)
+}
+
+function _RemoveClass(element, className) {
+  element.classList.remove(className)
+}
+
+function _HasClass(element, className) {
+  return element.classList.contains(className)
+}
+
+function _ChildrenOfElement(element) {
+  return element.children
+}
+
+function _CountChildrenOfElementWithClass(element, className) {
+  if (element[0] == ".") {
+    element = LastElementLogic("_CountChildrenOfElementWithClass", element)
+  } else if (element[0] == "#") {
+    element = document.querySelector(element)
+  }
+  let count = 0
+  for (let i = 0; i < element.children.length; i++) {
+      if (element.childNodes[i].classList.contains(className)) {
+        count++
+      }        
+  }
+  return count
 }
 
 
@@ -186,6 +252,8 @@ _CreateDOM("section",".todoapp",false)
   _AddEvent("keydown",function(e){
     if (e.keyCode == 13) {
       console.log(e)
+      _ShowElement(".footer")
+      _ShowElement("#mark")
       _CreateDOM("li",".l",true, ".todo-list")
         _CreateDOM("div",".view",true, ".l")
           _CreateDOM("input",".toggle",true, ".view")
@@ -194,6 +262,15 @@ _CreateDOM("section",".todoapp",false)
           _Text(".lbl",_Get(".new-todo"))
           _ClearValue(".new-todo")
           _CreateDOM("button",".destroy",false, ".view")
+          _AddEventToLastOfElement("change",function(){
+            //console.log("i")
+            let list = this.parentElement.parentElement
+            if (_HasClass(list, "completed")) {
+              _RemoveClass(list, "completed")
+            } else {
+              _AddClass(list, "completed")
+            }
+          }, ".toggle")
           _AddEvent("click",function(){
             _DeleteParent(this)
           },".destroy")
@@ -203,6 +280,7 @@ _CreateDOM("section",".todoapp",false)
 _UpLayer(1)
 _CreateDOM("footer",".footer",false)
   _CreateDOM("span",".todo-count",true)
+  _Text(".todo-count", "1 item left")
   _CreateDOM("ul",".filters",false)
     _CreateDOM("li","",true)
       _CreateDOM("a",".selected",true)
@@ -219,6 +297,10 @@ _CreateDOM("footer",".footer",false)
   _CreateDOM("button",".clear-completed",false)
   _Text(".selected3","Completed")
 
+if (document.querySelector(".todo-list").children.length == 0) {
+  _HideElement(".footer")
+  _HideElement("#mark")
+}
 
 
 _Display("*")
