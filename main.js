@@ -134,6 +134,14 @@ function _ClearValue(element) {
   LastElementLogic("_ClearValue", element)
 }
 
+function _DeleteParent(child) {
+      // Sélectionnez l'élément parent de l'élément enfant
+  var parent = child.parentElement;
+  if (parent !== null) {
+    parent.remove();
+  }
+}
+
 function LastElementLogic(funcName, element, text) {
   let nodes = document.querySelectorAll(element);
   if (funcName == "_Text") {
@@ -186,6 +194,9 @@ _CreateDOM("section",".todoapp",false)
           _Text(".lbl",_Get(".new-todo"))
           _ClearValue(".new-todo")
           _CreateDOM("button",".destroy",false, ".view")
+          _AddEvent("click",function(){
+            _DeleteParent(this)
+          },".destroy")
   
     }
   },"input")
