@@ -1,6 +1,7 @@
 var custom_element_child = [];
 var custom_element = [];
 var custom_element_layer = [];
+var local_storage = []
 var layer = 0;
 
 export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
@@ -206,6 +207,20 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
   export function _HideElements(element) {
     document.querySelectorAll(element).style.display = 'none';
   }
+
+  export function _ShowElementsWithClass(element) {
+    let elements = document.querySelectorAll(element)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'block';
+    }
+  }
+
+  export function _HideElementsWithClass(element) {
+    let elements = document.querySelectorAll(element)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+    }
+  }
   
   export function _AddClass(element, className) {
     element.classList.add(className)
@@ -331,4 +346,16 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
 
   export function _setRoute(route) {
     history.pushState(null, null, route);
+  }
+
+  export function _getRoute(route) {
+    return location.hash
+  }
+
+  export function setLocalStorage(name, element) {
+    localStorage.setItem(name, element)
+  }
+
+  export function getLocalStorage(name) {
+    return localStorage.getItem(name)
   }
