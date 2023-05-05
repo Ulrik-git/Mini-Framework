@@ -96,6 +96,7 @@ quack._CreateDOM("footer",".footer",false)
   //quack._Text(".selected3","Completed")
   quack._Text(".clear-completed","Clear completed")
   quack._AddEvent("click",function(){
+    quack._setRoute("/#")
     quack._RemoveChildrenElementWithClass('.todo-list', 'completed')
   },".clear-completed")
 

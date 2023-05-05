@@ -328,3 +328,7 @@ export function _CreateDOM(type, queryAttribute, isChild, appendToParent) {
     }
     return false
   }
+
+  export function _setRoute(route) {
+    history.pushState(null, null, route);
+  }
