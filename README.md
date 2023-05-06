@@ -38,6 +38,53 @@ You have to know that the quack functions are sorted in 7 different classes.
 |_Text(type,text)|Add text to custom DOM element|
 |_SetElementColor(element, color)|Set color to custom DOM element|
 
+#### Layer functions :
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_CreateDOM(type,[attribute],[child],[parent])|Create a custom DOM element| 
+|_Clear()|Reset local varirable for DOM element|
+|_UpLayer(number)|Set the creation layer to another level|
+|_Display(name)|Display custom DOM element on page|
+|_Undisplay(name)|Undisplay custom DOM element on page|
+
+#### Monitor functions
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_Get(element)|Get the value of the element|
+|_ClearValue(element)|Clear the value of the element|
+|_DeleteParent(child)|Delete the parent of the element|
+|_AddClass(element, className)|Add class to custom element|
+|_AddClassToElementsOfClass(classToAdd, className)|Add class to custom element with class|
+|_RemoveClass(element, className)|Remove class to custom element|
+|_RemoveClassFromElementsOfClass(classToRemove, className)|Remove class to custom element with class|
+|_HasClass(element, className)|Check if the element have the class|
+|_ChildrenOfElement(element)|Return the children of the element|
+|_CountChildrenOfElementWithClass(element, className)|Return number of children for element with class|
+|_CountChildrenOfElement(element)|Return number of children of element|
+|_RemoveChildrenElementWithClass(element, className)|Remove children of element with class|
+
+#### Route functions
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_setRoute(route)|Set the route|
+|_getRoute()|Get the route|
+
+#### Storage functions
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|setLocalStorage(name, element)|Store in local|
+|getLocalStorage(name)|Get the value of the element stored|
+
+#### Visibility functions
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_HideElement(element)|Hide the element|
+|_ShowElement(element)|Show the element|
+|_HideElements(element)|Hide the elements|
+|_ShowElementsWithClass(element)|Show the element with class
+|_HideElementsWithClass(element)|Hide the element with class|
+
+
 | Function                               | Description                          |
 | :--------                              | :-------                             |
 |_CreateDOM(type,[attribute],[child],[parent])|Create a custom DOM element| 
