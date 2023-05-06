@@ -6,8 +6,11 @@ To use mini-framework, you need to clone our git repository.
 
 ```txt
 git clone https://zone01normandie.org/git/Ulrik/mini-framework
+```
 
-cd mini-framework
+In your js file : 
+```js
+import { Quack } from "./quack.JS/quack.js";
 ```
 
 Then you are able to use it.
@@ -17,7 +20,23 @@ To learn about method and functions, read the documentation.
 
 ## Functions
 
+You have to know that the quack functions are sorted in 7 different classes.
+* custom
+* event
+* layer
+* monitor
+* route
+* storage
+* visibility
+
 ### Functions List
+
+#### Custom functions : 
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_Attr(type,attribute,value)|Add attribute to custom DOM element|
+|_Text(type,text)|Add text to custom DOM element|
+|_SetElementColor(element, color)|Set color to custom DOM element|
 
 | Function                               | Description                          |
 | :--------                              | :-------                             |
