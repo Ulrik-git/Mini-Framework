@@ -38,6 +38,12 @@ You have to know that the quack functions are sorted in 7 different classes.
 |_Text(type,text)|Add text to custom DOM element|
 |_SetElementColor(element, color)|Set color to custom DOM element|
 
+#### Events functions : 
+| Function                               | Description                          |
+| :--------                              | :-------                             |
+|_AddEvent(event,func,type)|Add a event listener|
+|_RemoveEvent(event, func, type)|Remove a event listener|
+
 #### Layer functions :
 | Function                               | Description                          |
 | :--------                              | :-------                             |
@@ -84,40 +90,53 @@ You have to know that the quack functions are sorted in 7 different classes.
 |_ShowElementsWithClass(element)|Show the element with class
 |_HideElementsWithClass(element)|Hide the element with class|
 
-
-| Function                               | Description                          |
-| :--------                              | :-------                             |
-|_CreateDOM(type,[attribute],[child],[parent])|Create a custom DOM element| 
-|_AddEvent(event,function,type)|Create event for custom DOM element|
-|_RemoveEvent(event,type)|Remove event for custom DOM element|
-|_Display(name)|Display custom DOM element on page|
-|_Attr(type,attribute,value)|Add attribute to custom DOM element|
-|_Text(type,text)|Add text to custom DOM element|
-|_Clear()|Reset local variable for DOM element| 
-|_UpLayer(number)|Set the creation layer to another level|
-|_Get(name)|Get the value of the element|
-|_ClearValue(name)|Clear the value of the element|
-|_DeleteParent(name)|Delete the parent of the element|
-
-
-### _CreateDOM
+## Exemples : 
+### _Attr
 ```js
-_CreateDOM(type,[attribute],[child],[parent])
+_Attr(type,attribute,value)
+// Call with
+Quack.custom._Attr(...)
 ```
-Create a custom DOM element
-* Type : (h1,div,header,span...) **required**<br />
-*What is the type of the custom element*
-* Attribute : (class,id) **optionnal**<br />
-*How to access to the element*
-* Child : (true,false) **optionnal**<br />
-*Have to be created as a child of the previous element*
-* Parent : (name) **optionnal**<br />
-*Define who is the parent of the element*
+Add attribute to custom DOM element
+* Type : (div,#block...) **required** <br />
+*Select the element to add this attribute*
+* Attribute : (type,name...) **required** <br />
+*Select the attribute to add*
+* Value : (value) **required** <br />
+*What is the value for the added attribute*
 ```js
 // Exemple
-_CreateDOM("div") // For creating a div
-_CreateDOM("div",".block") // For creating a div with the class block
-_CreateDOM("div",".block",true) // For creating a div with the class block and is a child of previous element
+_Attr(".block","style","color:red") // Set a style attribute to all the element with class block
+```
+### _Text
+```js
+_Text(type,text)
+// Call with
+Quack.custom._Text(...)
+```
+Add text to custom DOM element
+* Type : (div,.block) **required** <br />
+*Select the element to add this text*
+* Text : (value) **required** <br />
+*Select the text to add*
+```js
+// Exemple
+_Text("#block","Hello there ! ") // Add Hello there ! to the text of the element block
+```
+### _SetElementColor
+```js
+_SetElementColor(element, color)
+// Call with
+Quack.custom._SetElementColor(...)
+```
+Set color to custom DOM element
+* Element : (div,.block...) **required** <br />
+*Select the element to add this text*
+* Color : (red,blue...) **required** <br />
+*Select the color*
+```js
+// Exemple
+_SetElementColor("#block", "red") //Set the color of the element block in red
 ```
 ### _AddEvent
 ```js
@@ -147,9 +166,53 @@ Remove event for custom DOM element
 // Exemple
 _RemoveEvent("click","div") // Remove the click event on div
 ```
+### _CreateDOM
+```js
+_CreateDOM(type,[attribute],[child],[parent])
+//Call with
+Quack.layer._CreateDOM(...)
+```
+Create a custom DOM element
+* Type : (h1,div,header,span...) **required**<br />
+*What is the type of the custom element*
+* Attribute : (class,id) **optionnal**<br />
+*How to access to the element*
+* Child : (true,false) **optionnal**<br />
+*Have to be created as a child of the previous element*
+* Parent : (name) **optionnal**<br />
+*Define who is the parent of the element*
+```js
+// Exemple
+_CreateDOM("div") // For creating a div
+_CreateDOM("div",".block") // For creating a div with the class block
+_CreateDOM("div",".block",true) // For creating a div with the class block and is a child of previous element
+```
+### _Clear
+```js
+_Clear()
+//Call with 
+Quack.layer._Clear()
+```
+Reset local variable for DOM element
+### _UpLayer
+```js
+_UpLayer(number)
+//Call with
+Quack.layer._UpLayer(...)
+```
+Set the creation layer to another level
+* Number : (*,0,1) **required** <br />
+*Define how many layer he have to go back*
+```js
+// Exemple
+_UpLayer(1) // Set the layer to current-1
+_UpLayer("*") // Set the layer to the body level
+```
 ###  _Display
 ```js
 _Display(name)
+//Call with
+Quack.layer._Display(...)
 ```
 Display custom DOM element on page
 * Name : (*,div...) **required** <br />
@@ -160,54 +223,23 @@ Display custom DOM element on page
 _Display("*")
 // EOF
 ```
-### _Attr
+###  _Undisplay
 ```js
-_Attr(type,attribute,value)
+_Undisplay(name)
+//Call with
+Quack.layer._Undisplay(...)
 ```
-Add attribute to custom DOM element
-* Type : (div,#block...) **required** <br />
-*Select the element to add this attribute*
-* Attribute : (type,name...) **required** <br />
-*Select the attribute to add*
-* Value : (value) **required** <br />
-*What is the value for the added attribute*
+Undisplay custom DOM element on page
+* Name : (*,div...) **required** <br />
+*Display element on page*
 ```js
-// Exemple
-_Attr(".block","style","color:red") // Set a style attribute to all the element with class block
-```
-### _Text
-```js
-_Text(type,text)
-```
-Add text to custom DOM element
-* Type : (div,.block) **required** <br />
-*Select the element to add this text*
-* Text : (value) **required** <br />
-*Select the text to add*
-```js
-// Exemple
-_Text("#block","Hello there ! ") // Add Hello there ! to the text of the element block
-```
-### _Clear
-```js
-_Clear()
-```
-Reset local variable for DOM element
-### _UpLayer
-```js
-_UpLayer(number)
-```
-Set the creation layer to another level
-* Number : (*,0,1) **required** <br />
-*Define how many layer he have to go back*
-```js
-// Exemple
-_UpLayer(1) // Set the layer to current-1
-_UpLayer("*") // Set the layer to the body level
+_Undisplay("*")
 ```
 ### _Get
 ```js
 _Get(name)
+//Call with 
+Quack.monitor._Get(...)
 ```
 Get the value of the element
 * Name : (div,#block...) **required** <br />
@@ -219,6 +251,8 @@ _Get("#block") //get the value of the element with id block
 ### _ClearValue
 ```js
 _ClearValue(name)
+//Call with
+Quack.monitor._ClearValue(...)
 ```
 Clear the value of the element
 * Name : (div,#block...) **required** <br />
@@ -230,6 +264,8 @@ _ClearValue("#block") // Set the value of element with id block to null
 ### _DeleteParent
 ```js
 _DeleteParent(name)
+//Call with
+Quack.monitor._Deleteparent(...)
 ```
 Delete the parent of the element
 * Name : (div,#block...) **required** <br />
@@ -238,6 +274,80 @@ Delete the parent of the element
 // Exemple
 _DeleteParent("#block") // Delete the parent of the element with id block
 ```
+### _AddClass
+```js
+_AddClass(element, className)
+//Call with
+Quack.monitor._AddClass(...)
+```
+Add class to a custom DOM element
+* Element : (element) **required** <br />
+*Select the element to add the class*
+* ClassName : (value) **required** <br />
+*Select the class to add*
 
-
-
+### _setRoute
+```js
+_setRoute(route)
+//Call with
+Quack.route._setRoute(route)
+```
+Define the current route
+* Route : (value) **required** <br />
+*Select the route*
+```js
+_setRoute("/home") //Set the route to home
+```
+### _getRoute
+```js
+_getRoute()
+//Call with
+Quack.route._getRoute()
+```
+Get the current value of the route
+### setLocalStorage
+```js
+setLocalStorage(name, element)
+//Call with
+Quack.storage.setLocalStorage(name, element)
+```
+Set in local storage a new element
+* Name : (value) **required** <br />
+*Set the name of the stored value*
+* Element : (value) **required** <br />
+*Set the value to store*
+```js
+//Exemple
+setLocalStorage("username", "toto") // Store a variable with name username and value toto
+```
+### getLocalStorage
+```js
+getLocalStorage(name)
+//Call with
+Quack.storage.getLocalStorage(name)
+```
+Get the value of the data stored
+* Name : (value) **required** <br />
+*Set the name of the target*
+```js
+//Exemple
+getLocalStorage("username") // get the value of the data with name "username"
+```
+### _HideElement
+```js
+_HideElement(element)
+//Call with
+Quack.visibility._HideElement(element)
+```
+Hide an element
+* Element : (element) **required** <br />
+*Select the element to hide*
+### _ShowElement
+```js
+_ShowElement(element)
+//Call with
+Quack.visibility._ShowElement(element)
+```
+Show an element
+* Element : (element) **required** <br />
+*Select the element to show*
