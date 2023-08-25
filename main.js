@@ -106,6 +106,36 @@ Quack.layer._CreateDOM("section",".todoapp",false)
         Quack.monitor._DeleteParent(this.parentNode)
         updateCount()
       },".destroy")
+      // Add a dblclick event listener to each list element with the class "view"
+      Quack.event._AddEvent("dblclick", function () {
+        const listItem = this.closest(".l"); // Find the parent list item
+        const label = listItem.querySelector(".lbl"); // Find the label element
+
+        // Add the contentEditable attribute to make the label editable
+        label.contentEditable = "true";
+        label.spellcheck = "false"; // Disable spellcheck
+        label.focus(); // Focus on the label for editing
+
+        // Add a keydown event listener to the label to detect Enter key press
+        label.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault(); // Prevent line break
+            label.removeAttribute("contentEditable"); // Remove contentEditable attribute
+            this.blur(); // Trigger the blur event to save the changes
+          }
+        });
+
+        // Add a blur event listener to save the changes when the label loses focus
+        label.addEventListener("blur", function () {
+          const newText = this.textContent.trim();
+          if (newText !== "") {
+            // Update the todos array and localStorage with the edited content
+            const index = Array.from(listItem.parentNode.children).indexOf(listItem);
+            todos[index].text = newText;
+            Quack.storage.setLocalStorage("todos", JSON.stringify(todos));
+          }
+        });
+      }, ".view"); // Can also be .lbl
   }
 Quack.layer._UpLayer(1)
 Quack.layer._CreateDOM("footer",".footer",false)
@@ -168,6 +198,10 @@ Quack.layer._CreateDOM("footer",".info",false)
   Quack.custom._Text(".footer-creators","Created by Ulrik And Waahx")
   Quack.layer._CreateDOM("p",".footer-part-of",false)
   Quack.custom._Text(".footer-part-of","Part of TodoMVC (un-officially)")
+console.log(document.querySelectorAll('.destroy'))
+for (let i = 0; i < document.querySelectorAll('.lbl').length; i++) {
+  
+}
 
 updateCount()
 
